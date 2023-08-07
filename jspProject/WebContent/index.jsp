@@ -1,3 +1,4 @@
+<%@page import="com.kh.common.JDBCTemplate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,5 +33,10 @@
 		  게시판 작성 (C) - 첨부파일 업로드 (C)
 		
 	 -->
+	 	 
+	 <%@ include file = "views/common/menubar.jsp"%>
+	 
+	 
+	 
 </body>
 </html>
