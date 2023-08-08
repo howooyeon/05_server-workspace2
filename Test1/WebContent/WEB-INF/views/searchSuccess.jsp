@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div align="center">
 	<h1>회원정보</h1>
 	<table border="1">
 	<tr>
@@ -28,5 +29,9 @@
 	</table>
 	
 	<a href ="/Test1">메인페이지로 돌아가기</a>
+	<br> <br>
+	
+	<img alt="" src="">
+	</div>
 </body>
 </html>
