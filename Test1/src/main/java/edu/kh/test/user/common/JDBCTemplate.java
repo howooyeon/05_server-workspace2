@@ -17,7 +17,7 @@ public class JDBCTemplate {
 			// 1. 클래스 파일로 등록
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			// 커넥션 객체 생성(url, 계정명, 비	번) => driverManager
+			// 커넥션 객체 생성(url, 계정명, 비번) => driverManager
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SERVER", "SERVER");
 			
 		} catch (ClassNotFoundException e) {

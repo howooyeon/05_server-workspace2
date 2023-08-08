@@ -33,20 +33,11 @@ public class SelectUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1) 필요한 데이터 뽑기(db에 필요한 데이터들 !!)
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		
+		System.out.println("잘되나???");)
 		// 2) 서비스 호출 및 결과받기
-		User user = new UserService().selectUser(userNo);
 		
 		// 3) 응답화면 결정
-		if(user == null) {
-			request.setAttribute("errorMsg", "조회된 결과가 없습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/searchFail.jsp");
-			view.forward(request, response);
-		} else {
-			request.setAttribute("user", user);
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/searchSuccess.jsp");
-			view.forward(request, response);
-		}
+		
 	}
 
 	/**
