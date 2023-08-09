@@ -1,4 +1,4 @@
-package edu.kh.test.user.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.kh.test.user.model.service.UserService;
-import edu.kh.test.user.model.vo.User;
-
 /**
- * Servlet implementation class SelectUserServlet
+ * Servlet implementation class MemberEnrollFormController
  */
-@WebServlet("/search.do")
-public class SelectUserServlet extends HttpServlet {
+@WebServlet("/enrollForm.me")
+public class MemberEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectUserServlet() {
+    public MemberEnrollFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +28,10 @@ public class SelectUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1) 필요한 데이터 뽑기(db에 필요한 데이터들 !!)
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		System.out.println("잘되나???");
-		// 2) 서비스 호출 및 결과받기
-		User user = UserService().SelectUser("userNo");
 		
-		// 3) 응답화면 결정
-		
+		// 응답페이지 (회원가입페이지)
+		RequestDispatcher view = request.getRequestDispatcher("views/member/memberEnrollForm.jsp");
+		view.forward(request, response);
 	}
 
 	/**

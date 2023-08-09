@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 
@@ -8,9 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.board.model.service.MemberService;
-import com.kh.board.model.vo.Member;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class LoginController
@@ -24,7 +25,6 @@ public class LoginController extends HttpServlet {
      */
     public LoginController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -59,9 +59,7 @@ public class LoginController extends HttpServlet {
 		 * 공통적으로 데이터를 담고자 한다면 .setAttribute("키", "벨류")
 		 * 			데이터를 꺼내고자 한다면 .getAttribute("키") : object 타입으로 벨류
 		 * 			데이터를 지우고자 한다면 .removeAttribute("키")
-		 * 
-		 * 
-		 * 
+j		 * 
 		 */
 		
 		if(loginMember == null) {
@@ -72,9 +70,28 @@ public class LoginController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}else {
-			// 조회결과 있음 == 로그인 성공!! 
+			// 조회결과 있음 == 로그인 성공!! => 메인페이지 응답 (index.jsp)
+			
+			// 로그인한 회원정보(loginMember)를 session에 담기!!(여기저기 가져다 쓸 수 있도록!)
+			
+			// Servlet에서 session에 접근하고자 한다면 우선 세션 객체 얻어와야됨
+			HttpSession session = request.getSession(); // 리퀘스트야 나좀도와줘 그거좀 얻어다주라
+			session.setAttribute("loginMember", loginMember);
+			
+//			// 1. 포워딩 방식 응답 뷰 출력
+//			현재 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑
+//			lcalhost:8001/jsp/login.me
+//			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+//			view.forward(request, response);
+			
+			// 2. url 재요청 방식(sendRedirect 방식)
+			// 기존에 저 페이지를 응답하는 url이 존재한다면 사용가능
+			// localhost:8001/jsp
+			
+//			response.sendRedirect("/jsp");
+			response.sendRedirect(request.getContextPath()); // = /jsp		
+			
 		}
-		
 		
 	}
 

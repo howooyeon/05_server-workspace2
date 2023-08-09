@@ -1,4 +1,4 @@
-package com.kh.board.model.vo;
+package com.kh.member.model.vo;
 
 import java.sql.Date;
 
@@ -18,10 +18,21 @@ public class Member {
 	 // 기본생성자, 매개변수 생성자, setter/getter, toString 
 	 // db 설계 후 vo만들면됨
 	 
-	 public Member() {}
+	 public Member() {} // 반환형 없
 	 
+	 public Member(String userId, String userPwd, String userName, String phone, String email, String address,
+			 String interest) {
+		 super();
+		 this.userId = userId;
+		 this.userPwd = userPwd;
+		 this.userName = userName;
+		 this.phone = phone;
+		 this.email = email;
+		 this.address = address;
+		 this.interest = interest;
+	 }
 
-	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
+	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email, // 반환형 x
 			String address, String interest, Date entrollDate, Date modifyDate, String status) {
 		super();
 		this.userNo = userNo;
@@ -36,6 +47,7 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
+
 
 
 	public int getUserNo() {
