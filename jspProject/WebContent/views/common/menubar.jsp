@@ -73,7 +73,7 @@
 		
 	<% } %>
 
-    <h1 align="center">welcome Hoyeon World</h1>
+    <h1 align="center">welcome lalala World</h1>
 
     <div class="login-area">
     

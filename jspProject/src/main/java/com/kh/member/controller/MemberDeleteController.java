@@ -42,7 +42,7 @@ public class MemberDeleteController extends HttpServlet {
 		if(result > 0) { // 성공
 		session.setAttribute("alertMsg", "성공적으로 회원탈퇴 되었습니다."); // request는 포워딩 방식일 때만 가
 		session.removeAttribute("loginMember");
-		System.out.println(result + "컨트롤러 result 성공");
+		// System.out.println(result + "컨트롤러 result 성공");
 		
 		// 성공 => index 페이지 => url 재요청 !! => /jsp
 		response.sendRedirect(request.getContextPath());
