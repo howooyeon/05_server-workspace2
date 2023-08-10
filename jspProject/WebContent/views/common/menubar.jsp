@@ -13,6 +13,7 @@
 	// 서비스 성공 후 menubar.jsp 로딩시 : alert로 띄워줄 메시지 문구
 	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,11 +49,22 @@
     .menu a:hover{
         background-color: darkgrey;
     }
-
+    
 </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-	<% if(alertMsg != null) { %>
+<body> <!--alertMsg 보낼거면~ 메세지를 띄우고 그 메세지를 지우겠다는 의미 -->
+	<% if(alertMsg != null) { %> 
 		
 		<script>
 			alert("<%= alertMsg %>");
