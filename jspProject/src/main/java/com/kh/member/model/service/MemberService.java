@@ -2,8 +2,6 @@ package com.kh.member.model.service;
 
 import java.sql.Connection;
 
-import javax.servlet.http.HttpSession;
-
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 import static com.kh.common.JDBCTemplate.*;

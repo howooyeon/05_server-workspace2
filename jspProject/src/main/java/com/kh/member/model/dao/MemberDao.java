@@ -33,7 +33,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		// sql에 select ~ 들어있는거
-		String sql = prop.getProperty("loginMember");
+		String sql = prop.getProperty("loginMember"); // xml 키값과 일치해야됨
 		
 		try {
 			pstmt = conn.prepareStatement(sql); // 미완성된 쿼리 고냥 외우삼

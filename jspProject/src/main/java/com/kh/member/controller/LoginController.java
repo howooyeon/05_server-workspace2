@@ -62,7 +62,7 @@ public class LoginController extends HttpServlet {
 j		 * 
 		 */
 		
-		if(loginMember == null) {
+		if(loginMember == null) { // 셀렉 때렸는데 조회된게 없을 때 ~
 			// 조회결과 없음 == 로그인 실패!! => 에러 문구가 보여지는 에러페이지 응답
 			request.setAttribute("errorMsg", "로그인실패");
 			// 응답페이지(jsp)에게 위임시 필요한 객체 => RequestDispatcher
@@ -80,7 +80,7 @@ j		 *
 			
 //			// 1. 포워딩 방식 응답 뷰 출력
 //			현재 해당 선택된 jsp가 보여질 뿐 url에는 여전히 현재 이 서블릿 매핑
-//			lcalhost:8001/jsp/login.me
+//			localhost:8001/jsp/login.me
 //			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 //			view.forward(request, response);
 			
@@ -89,7 +89,7 @@ j		 *
 			// localhost:8001/jsp
 			
 //			response.sendRedirect("/jsp");
-			response.sendRedirect(request.getContextPath()); // = /jsp		
+			response.sendRedirect(request.getContextPath()); // = /jsp 맞지 로그인 성공했으면 메인으로 다시 가야지	
 			
 		}
 		

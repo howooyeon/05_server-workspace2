@@ -43,10 +43,10 @@ public class MemberUpdateController extends HttpServlet {
 		String address = request.getParameter("address");
 		String[] interestArr = request.getParameterValues("interest");
 		
-		String interest ="";
+		String interest =""; // 일단 초기화해줌
 		
-		if(interestArr != null) {
-			interest = String.join(",", interestArr);
+		if(interestArr != null) { // 취미 하나라도 체크했다면~
+			interest = String.join(",", interestArr); // String.join -> 콤마로 내 배열 하나씩 끊어내 그리고 아까 초기화둔 interest에 받음
 		}
 		
 		Member m = new Member(userId, userName, phone, email, address, interest);

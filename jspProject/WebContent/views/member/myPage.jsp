@@ -22,6 +22,7 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 	
+	<!-- 이거 무슨 뜻이지...????? -->
 	<%
 		String userId = loginMember.getUserId();
 		String userName = loginMember.getUserName();
@@ -29,9 +30,7 @@
 		String email = (loginMember.getEmail() == null) ? "" : loginMember.getEmail();
 		String address = (loginMember.getAddress() == null) ? "" : loginMember.getAddress();
 		String interest = (loginMember.getInterest() == null) ? "" : loginMember.getInterest();
-		// "운동, 등산, 영화" | ""
-		
-				
+		// "운동, 등산, 영화" | ""			
 	%>
 	
 	<div class="outer">
@@ -88,6 +87,7 @@
                 </tr>
             </table>
             
+            <!-- 체크박스 안에 체크되도록 채워넣기 -->
             <script>
             	$(function(){
             		const interest = "<%= interest %>";
@@ -97,7 +97,7 @@
             		$("input[type=checkbox]").each(function(){
             			// $(this) : 순차적으로 접근되는 체크박스 요소
             			// $(this).val() : 해당 체크박스의 value값
-            			if(interest.search($(this).val()) != -1){
+            			if(interest.search($(this).val()) != -1){ /*-1이라는 건 값이 없다는 뜻*/
             				$(this).attr("checked", true);
             			}
             		})
@@ -203,16 +203,12 @@
                  -->
             </form>
 	        
-	        
 	      </div>
 
 	    </div>
 	  </div>
 	</div>
 		
-    
-    
-    
     
 </body>
 </html>

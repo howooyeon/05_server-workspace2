@@ -63,7 +63,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body> <!--alertMsg 보낼거면~ 메세지를 띄우고 그 메세지를 지우겠다는 의미 -->
+<body> <!-- alertMsg 보낼거면~ 메세지를 띄우고 그 메세지를 지우겠다는 의미 그래서 이걸 왜하는건데? -->
 	<% if(alertMsg != null) { %> 
 		
 		<script>
@@ -73,11 +73,11 @@
 		
 	<% } %>
 
-    <h1 align="center">welcome lalala World</h1>
+    <h1 align="center">welcome Hoyeon World</h1>
 
     <div class="login-area">
     
-    <% if(loginMember == null) { %>
+    <% if(loginMember == null) { %> <!-- 로그인 전 후 if-else문으로... -->
         <!-- case1. 로그인 전  -->
         <form action="<%=contextPath %>/login.me" method="post">
             <table>
@@ -122,11 +122,13 @@
     </div>
     
     <script>
+    		/*회원가입 페이지*/
           function enrollPage() {
 			// location.href="<%=contextPath%>/views/member/memberEnrollForm.jsp";
 			// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
 				
 			// 단순한 페이지 요청도 servlet 호출해서 servlet 거쳐갈 것! (즉, url에는 서블릿 매핑값만 노출)
+			// 자스 페이지 이동할 떄 location.href 씀
 			location.href = "<%=contextPath %>/enrollForm.me";
 			}
    	</script>
