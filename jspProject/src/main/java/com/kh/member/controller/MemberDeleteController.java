@@ -2,7 +2,6 @@ package com.kh.member.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberDeleteController
@@ -25,7 +23,6 @@ public class MemberDeleteController extends HttpServlet {
      */
     public MemberDeleteController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

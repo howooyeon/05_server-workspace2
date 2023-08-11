@@ -91,7 +91,7 @@
 
 </entry>
 
-<entry key="deleteMember">
+<entry key="deleteMember"> <!-- key는 메소드 이름과 동일하게 -->
 
 		UPDATE MEMBER
            SET STATUS = 'N'

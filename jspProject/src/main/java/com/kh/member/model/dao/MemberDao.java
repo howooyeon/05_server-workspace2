@@ -193,6 +193,7 @@ public class MemberDao {
 	}
 
 	public int deleteMember(Connection conn, String userId, String userPwd) {
+		// update문 => 처리된 행수 => 트렌젝션 처리
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
