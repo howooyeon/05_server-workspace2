@@ -71,6 +71,12 @@ SELECT * FROM NOTICE;
             SET NOTICE_TITLE = ?
             , NOTICE_CONTENT = ?
           WHERE NOTICE_NO = ?
+          
+          -- 공지사항 삭제 쿼리
+          UDATE NOTICE
+          SET STATUS = 'N'
+          WHERE NOTICE_NO = ?;
     
+    SELECT * FROM BOARD;
     
         
