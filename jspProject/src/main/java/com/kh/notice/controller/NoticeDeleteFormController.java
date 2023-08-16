@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.notice.model.service.NoticeService;
 
@@ -32,13 +33,14 @@ public class NoticeDeleteFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		int noticeNo = Integer.parseInt(request.getParameter("num"));
+		int num = Integer.parseInt(request.getParameter("num"));
 		
-		int result = new NoticeService().deleteNotice(noticeNo);
+		int result = new NoticeService().deleteNotice(num);
 		
 		if(result > 0) { //요청 성공시 => 공지사항 목록페이지 alert(공지사항이 성공적으로 삭제됐습니다.)
-			request.setAttribute("alertMsg", "공지사항이 성공적으로 삭제됐습니다.");
-			request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "공지사항이 성공적으로 삭제됐습니다.");
+			response.sendRedirect(request.getContextPath()+"/list.no");
 			
 		}else { //요청 실패시 => 애러문구 보여지는 에러페이지 
 			request.setAttribute("errorMsg", "공지사항 삭제에 실패했습니다.");

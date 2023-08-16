@@ -5,6 +5,7 @@ import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.member.model.dao.MemberDao;
 import com.kh.notice.model.dao.NoticeDao;
 import com.kh.notice.model.vo.Notice;
 
@@ -69,14 +70,22 @@ public class NoticeService {
 		return result;
 	}
 
-	public int deleteNotice(int noticeNo) {
+	public int deleteNotice(int num) {
 		Connection conn = getConnection();
 		
-		int result = new NoticeDao().deleteNotice(conn, noticeNo);
+		int result = new NoticeDao().deleteNotice(conn, num);
+			
+		if(result > 0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
 		
 		close(conn);
 		
 		return result;
 	}
+		
 
 }

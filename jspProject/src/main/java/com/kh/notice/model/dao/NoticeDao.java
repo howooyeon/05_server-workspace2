@@ -159,16 +159,18 @@ public class NoticeDao {
 		return result;
 	}
 
-	public int deleteNotice(Connection conn, int noticeNo) {
+	public int deleteNotice(Connection conn, int num) {
+		// update문 => 처리된 행수 => 트랜젝션 처리
+		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("deleteMember");
+		String sql = prop.getProperty("deleteNotice");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, noticeNo);
+			pstmt.setInt(1, num);
 			
 			result = pstmt.executeUpdate();
 			
@@ -179,4 +181,6 @@ public class NoticeDao {
 		}
 		return result;
 	}
+
+	
 }
