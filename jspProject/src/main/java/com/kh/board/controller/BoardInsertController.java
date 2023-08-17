@@ -1,6 +1,7 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Attachment;
+import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -87,10 +91,47 @@ public class BoardInsertController extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			// 3. DB에 기록할 데이터를 뽑아서 VO에 주섬주섬 담기
+			// > Board : 카테고리번호, 제목, 내용, 작성자 회원번호 뽑아서 BOARD INSERT
+			
+			// > Attachment : 넘어온 첨파 있으면 원본명, 수정명, 저장폴더경로 ATTACHMENT INSERT
+			String category = multiRequest.getParameter("category");
+			String boardTitle = multiRequest.getParameter("title");
+			String boardContent = multiRequest.getParameter("content");
+			String boardWriter = multiRequest.getParameter("userNo");
+			
+			Board b = new Board();
+			b.setCategory(category);
+			b.setBoardTitle(boardTitle);
+			b.setBoardContent(boardContent);
+			b.setBoardWriter(boardWriter);
+			
+			Attachment at = null; // 첨에는 null로 초기화, 넘어온 첨부파일이 있다면 생성
+			// multiRequest.getOriginalFileName("키") : 넘어온 첨부파일이 있었을 경우 "원본명" | 없었을 경우 null
+			
+			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨파가 있다
+				at = new Attachment();
+				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
+				at.setChangeName(multiRequest.getFilesystemName("upfile"));
+				at.setFilePath("resources/board_upfiles");
+				
+			}
 		
 			// 4. 서비스 요청(요청 처리)
+			int result = new BoardService().insertBoard(b, at);
 			
 			// 5. 응답뷰 지정
+			
+			if(result > 0) {
+				// 성공 => /jsp/list.bo?cpage=1 url 재요청 => 목록페이지
+				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+				
+			} else {
+				// 실패 => 에러페이지
+				request.setAttribute("errorMsg", "공지사항 등록에 실패했습니다.");
+				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+				view.forward(request, response);
+
+			}
 			
 		}
 		

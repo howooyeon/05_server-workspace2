@@ -79,4 +79,29 @@ SELECT * FROM NOTICE;
     
     SELECT * FROM BOARD;
     
+    SELECT
+        CATEGORY_NO
+        ,CATEGORY_NAME
+    FROM CATEGORY
+    
+    -- board insert
+    INSERT
+        INTO BOARD
+        (
+        BOARD_NO
+        , BOARD_TYPE
+        , CATEGORY_NO
+        , BOARD_TITLE
+        , BOARD_CONTENT
+        , BOARD_WRITER
+        )
+        VALUES
+        (
+        SEQ_BNO.NEXTVAL
+        , 1
+        , 사용자가 선택한 카테고리번호
+        , 사용자가 입력한 제목
+        , 사용자가 입력한 내용
+        , 로그인한 회원 번호
+        )
         

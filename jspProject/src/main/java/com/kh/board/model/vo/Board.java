@@ -36,6 +36,8 @@ public class Board {
 		this.status = status;
 	}
 
+	public Board() {}
+
 	public int getBoradNo() {
 		return boradNo;
 	}
