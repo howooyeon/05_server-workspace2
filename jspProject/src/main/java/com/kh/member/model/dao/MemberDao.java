@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.kh.member.model.vo.Member;
 import static com.kh.common.JDBCTemplate.*;
 
@@ -25,47 +27,48 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 	}
+
 	
 	public Member loginMember(Connection conn, String userId, String userPwd) {
 		// select문 => ResultSet 객체(한행) => Member 객체
 		Member m = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		// sql에 select ~ 들어있는거
 		String sql = prop.getProperty("loginMember"); // xml 키값과 일치해야됨
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql); // 미완성된 쿼리 고냥 외우삼
-			
+
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd); // 마지막 숫자가 물음표의 갯수랑 같다
-			
+
 			rset = pstmt.executeQuery(); // 조회된 결과가 있다면 한행 | 조회결과 없다고 하면 아무것도 안담김
-			
-			if(rset.next()) { // 커서를 한행한행 옮기느누거
+
+			if (rset.next()) { // 커서를 한행한행 옮기느누거
 				m = new Member(rset.getInt("USER_NO"), // new Member 잖어 생성자 호출!! 매개변수 생성자 호출
-								rset.getString("USER_ID"), // rset과 관련된 부분은 db의 컬럼명으로
-								rset.getString("USER_PWD"),
-								rset.getString("USER_NAME"),
-								rset.getString("PHONE"),
-								rset.getString("EMAIL"),
-								rset.getString("ADDRESS"),
-								rset.getString("INTEREST"),
-								rset.getDate("ENROLL_DATE"),
-								rset.getDate("MODIFY_DATE"),
-								rset.getString("STATUS"));
+						rset.getString("USER_ID"), // rset과 관련된 부분은 db의 컬럼명으로
+						rset.getString("USER_PWD"), 
+						rset.getString("USER_NAME"),
+						rset.getString("PHONE"),
+						rset.getString("EMAIL"), 
+						rset.getString("ADDRESS"),
+						rset.getString("INTEREST"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getDate("MODIFY_DATE"),
+						rset.getString("STATUS"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(conn);
 			close(pstmt);
 		}
-		
+
 		return m; // 던지면 서비스가 받음
-		
+
 	}
 	
 	public int insertMember(Connection conn, Member m) {

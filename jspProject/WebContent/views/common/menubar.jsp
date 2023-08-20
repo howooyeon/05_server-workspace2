@@ -51,6 +51,7 @@
     }
     
 </style>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -62,6 +63,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 <body> <!-- alertMsg 보낼거면~ 메세지를 띄우고 그 메세지를 지우겠다는 의미 그래서 이걸 왜하는건데? -->
 	<% if(alertMsg != null) { %> 
@@ -70,7 +72,7 @@
 			alert("<%= alertMsg %>");
 		</script>
 		<% session.removeAttribute("alertMsg"); %>
-		
+
 	<% } %>
 
     <h1 align="center">welcome Hoyeon World</h1>
@@ -96,8 +98,6 @@
                     </th>
                 </tr>
             </table>
-            
-            
         </form>
 		<% }else {%>
 	        <!-- case2. 로그인 후 -->

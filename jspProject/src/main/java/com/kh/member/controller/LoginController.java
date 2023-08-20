@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
 		 * 공통적으로 데이터를 담고자 한다면 .setAttribute("키", "벨류")
 		 * 			데이터를 꺼내고자 한다면 .getAttribute("키") : object 타입으로 벨류
 		 * 			데이터를 지우고자 한다면 .removeAttribute("키")
-j		 * 
+		 * 
 		 */
 		
 		if(loginMember == null) { // 셀렉 때렸는데 조회된게 없을 때 ~
