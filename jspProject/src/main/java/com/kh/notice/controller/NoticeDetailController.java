@@ -38,7 +38,7 @@ public class NoticeDetailController extends HttpServlet {
 		if(result > 0) { // 성공 => 조회 가능한 공지사항 맞다 => 상세페이지
 			
 			// 해당 공지사항 조회용 서비스 호출
-			Notice n =new NoticeService().selectNotice(noticeNo);
+			Notice n = new NoticeService().selectNotice(noticeNo);
 			
 			request.setAttribute("n", n);
 			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
