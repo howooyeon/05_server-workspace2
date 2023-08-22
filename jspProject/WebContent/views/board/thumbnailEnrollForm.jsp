@@ -38,22 +38,20 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="3"><textarea name="content" style="resize: none;"
-							cols="30" rows="5" required></textarea></td>
+					<td colspan="3">
+					<textarea name="content" style="resize: none;" cols="30" rows="5" required></textarea>
+					</td>
 				</tr>
 				<tr>
 					<th>대표이미지</th>
-					<td colspan="3" align="center"><img id="titleImg" width="250"
-						height="170" onclick="chooseFile(1);"></td>
+					<td colspan="3" align="center">
+					<img id="titleImg" width="250" height="170" onclick="chooseFile(1);"></td>
 				</tr>
 				<tr>
 					<th>상세이미지</th>
-					<td><img id="contentImg1" width="150" height="120"
-						onclick="chooseFile(2);"></td>
-					<td><img id="contentImg2" width="150" height="120"
-						onclick="chooseFile(3);"></td>
-					<td><img id="contentImg3" width="150" height="120"
-						onclick="chooseFile(4);"></td>
+					<td><img id="contentImg1" width="150" height="120" onclick="chooseFile(2);"></td>
+					<td><img id="contentImg2" width="150" height="120" onclick="chooseFile(3);"></td>
+					<td><img id="contentImg3" width="150" height="120" onclick="chooseFile(4);"></td>
 				</tr>
 			</table>
 

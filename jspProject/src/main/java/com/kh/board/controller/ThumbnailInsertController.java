@@ -86,7 +86,7 @@ public class ThumbnailInsertController extends HttpServlet {
 			if(result > 0) {
 				// 성공 => /jsp/list.th url 재요청!!!
 				request.getSession().setAttribute("alertMsg", "성공적으로 게시글 등록이 되었습니다!");
-				response.sendRedirect(request.getContentType() + "/list.th");
+				response.sendRedirect(request.getContextPath() + "/list.th");
 			} else {
 				request.setAttribute("errorMsg", "사진게시판 등록에 실패했습니다.");
 				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
