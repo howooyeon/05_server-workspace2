@@ -47,14 +47,15 @@
         <h2 align="center">일반게시판 수정하기</h2>
         <br>
 
-        <form id="update-form" action="" method="post" enctype="multipart/form-data">
-
-            <table align="center">
-                <tr>
-                    <th width="70">카테고리</th>
-                    <td width="500">
-                        <select name="category">
-                            <!-- category 테이블로부터 조회해오기 -->
+        <form id="update-form" action="<%=contextPath %>/update.bo" method="post" enctype="multipart/form-data">
+        <input type="hidden" name = "bno" value ="<%=b.getBoardNo()%>"/>
+			<!-- 카테고리번호, 제목, 내용, 첨부파일 한개, 게시글 번호-->
+            	<table align="center">
+                	<tr>
+                    	<th width="70">카테고리</th>
+                    	<td width="500">
+                        	<select name="category">
+                            	<!-- category 테이블로부터 조회해오기 -->
                             <% for(Category c: list) { %>
                             <option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName()%></option>
                             <% } %>
@@ -84,6 +85,7 @@
                     	<% if (at != null) { %>
 	                        <!-- 현재 이 게시글에 딸린 첨부파일이 있을 경우 -->
 	                        <%= at.getOriginName() %>
+	                        <input type= "hidden" name ="originFileNo" value="<%= at.getFileNo()%>"/>
                         <% } %>
                         <input type="file" name="upfile">
                     </td>

@@ -1,7 +1,7 @@
 package com.kh.board.model.vo;
 
 public class Board {
-	private int boradNo;
+	private int boardNo;
 	private int boardType;
 	private String category; // 작성 기능시 카테고리 번호 | 조회 기능시 카테고리명
 	private String boardTitle;
@@ -12,9 +12,9 @@ public class Board {
 	private String status;
 	
 
-	public Board(int boradNo, String category, String boardTitle, String boardWriter, int count, String createDate) {
+	public Board(int boardNo, String category, String boardTitle, String boardWriter, int count, String createDate) {
 		super();
-		this.boradNo = boradNo;
+		this.boardNo = boardNo;
 		this.category = category;
 		this.boardTitle = boardTitle;
 		this.boardWriter = boardWriter;
@@ -23,10 +23,10 @@ public class Board {
 	}
 	
 
-	public Board(int boradNo, String category, String boardTitle, String boardContent, String boardWriter,
+	public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter,
 			String createDate) {
 		super();
-		this.boradNo = boradNo;
+		this.boardNo = boardNo;
 		this.category = category;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
@@ -35,10 +35,10 @@ public class Board {
 	}
 
 
-	public Board(int boradNo, int boardType, String category, String boardTitle, String boardContent,
+	public Board(int boardNo, int boardType, String category, String boardTitle, String boardContent,
 			String boardWriter, int count, String createDate, String status) {
 		super();
-		this.boradNo = boradNo;
+		this.boardNo = boardNo;
 		this.boardType = boardType;
 		this.category = category;
 		this.boardTitle = boardTitle;
@@ -51,12 +51,12 @@ public class Board {
 
 	public Board() {}
 
-	public int getBoradNo() {
-		return boradNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setBoradNo(int boradNo) {
-		this.boradNo = boradNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 	public int getBoardType() {
@@ -125,7 +125,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [boradNo=" + boradNo + ", boardType=" + boardType + ", category=" + category + ", boardTitle="
+		return "Board [boradNo=" + boardNo + ", boardType=" + boardType + ", category=" + category + ", boardTitle="
 				+ boardTitle + ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
 				+ ", createDate=" + createDate + ", status=" + status + "]";
 	}

@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.kh.member.model.vo.Member;
 import static com.kh.common.JDBCTemplate.*;
 

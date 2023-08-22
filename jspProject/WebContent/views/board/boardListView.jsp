@@ -77,7 +77,7 @@
                 <% for(Board b : list) {%>
                 <!-- case2. 게시글이 있을 경우 -->
                 <tr>
-                    <td><%=b.getBoradNo() %></td>
+                    <td><%=b.getBoardNo() %></td>
                     <td><%=b.getCategory() %></td>
                     <td><%=b.getBoardTitle() %></td>
                     <td><%=b.getBoardWriter() %></td>
