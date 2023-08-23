@@ -75,7 +75,47 @@ INSERT
              , ?
              , ?
             )
+            
+        -- 사진게시글 목록 조회용 SQL
+        SELECT
+              BOARD_NO
+            , BOARD_TITLE
+            , COUNT
+            , FILE_PATH || '/'  || CHANGE_NAME "TITLEIMG"
+        FROM BOARD B
+        JOIN ATTACHMENT ON (BOARD_NO = REF_BNO)
+        WHERE BOARD_TYPE = 2
+        AND B.STATUS = 'Y'
+        AND FILE_LEVEL = 1
+        ORDER
+            BY BOARD_NO DESC
+        ;
         
+        SELECT 
+            BOARD_NO
+            , CATEGORY_NAME
+            , BOARD_TITLE
+            , BOARD_CONTENT
+            , USER_ID
+            , TO_CHAR(CREATE_DATE, 'YYYY/MM/DD') "CREATE_DATE"
+        FROM BOARD
+        LEFT JOIN CATEGORY USING(CATEGORY_NO)
+        JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+        WHERE BOARD_NO = 100
+        ;
         
+        SELECT 
+              FILE_NO
+            , ORIGIN_NAME
+            , CHANGE_NAME
+            , FILE_PATH
+        FROM ATTACHMENT
+        WHERE REF_BNO = 116
+        AND STATUS = 'Y'
+        ;
         
+        SELECT 
+            COUNT(*) "COUNT"
+        FROM MEMBER
+        WHERE USER_ID = 'user01'
         

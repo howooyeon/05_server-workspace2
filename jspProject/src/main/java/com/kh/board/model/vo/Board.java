@@ -11,6 +11,24 @@ public class Board {
 	private String createDate; // 
 	private String status;
 	
+	private String titleImg; // 대표 이미지 경로를 보관할 필드
+
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
+	
+
+	public Board(int boardNo, String boardTitle, int count, String titleImg) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.count = count;
+		this.titleImg = titleImg;
+	}
 
 	public Board(int boardNo, String category, String boardTitle, String boardWriter, int count, String createDate) {
 		super();
@@ -122,6 +140,8 @@ public class Board {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
 
 	@Override
 	public String toString() {

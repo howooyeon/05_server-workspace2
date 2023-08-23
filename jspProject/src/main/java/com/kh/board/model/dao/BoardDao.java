@@ -2,15 +2,12 @@ package com.kh.board.model.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import javax.naming.spi.DirStateFactory.Result;
 
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
@@ -377,7 +374,63 @@ public class BoardDao {
 		}
 		return result;
 	}
+
+	public ArrayList<Board> selectThumbnailList(Connection conn) {
+		ArrayList<Board> list = new ArrayList<Board>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectThumbnailList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			// 조회된 결과 뽑아서 list에 담아서 반환
+			while(rset.next()) {
+				Board b = new Board();
+							b.setBoardNo(rset.getInt("board_no"));
+							b.setBoardTitle(rset.getString("board_title"));		  
+							b.setCount(rset.getInt("count"));
+							b.setTitleImg(rset.getString("titleimg"));		  
+									 list.add(b);
+			}
 	
-	
-	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Attachment> selectAttachmentList(Connection conn, int boardNo) {
+		ArrayList<Attachment> list = new ArrayList<Attachment>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment at = new Attachment();
+				at.setChangeName(rset.getString("change_name"));
+				at.setFilePath(rset.getString("file_path"));
+				
+				list.add(at);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }
