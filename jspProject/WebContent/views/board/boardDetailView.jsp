@@ -107,8 +107,7 @@
             <script>
             	$(function(){
             		selectReplyList();
-
-            		setInterval(selectReplyList, 1000);
+            		
             	});
             	
             	// ajax로 댓글 작성용
@@ -117,7 +116,7 @@
             			url:"rinsert.bo",
             			data:{
             				content:$("#replyContent").val(),
-            				bno: <%=b.getBoardNo()%>
+            				bnso: <%=b.getBoardNo()%>
             			},
             			type:"post",
             			success:function(result){
@@ -137,7 +136,9 @@
             	function selectReplyList(){
             		$.ajax({
             			url:"rlist.bo",
-            			data:{bno:<%=b.getBoardNo()%>},
+            			data:{
+            				bno: <%=b.getBoardNo()%>
+            			},
             			success:function(list){
             				console.log(list);
             				

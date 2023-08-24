@@ -61,9 +61,7 @@ public class jqAjaxController3 extends HttpServlet {
 		// Gson을 이용해서 vo객체 하나만 응답시 JSONObject {key:value, key:value, ..} 형태로 만들어서 응답
 		// 이때 key는 해당 vo객체의 필드명으로 알아서 세팅
 		
-		// 				자바배열 또는 ArrayList로 응답시 JSONArray [value, value, ..] 형태로 만들어서 응답
-		
-		
+		// 				자바배열 또는 ArrayList로 응답시 JSONArray [value, value, ..] 형태로 만들어서 응답	
 	}
 
 	/**
