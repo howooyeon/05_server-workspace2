@@ -100,7 +100,7 @@
     	function idCheck(){
     		// 중복확인 버튼 클릭시 사용자가 입력한 아이디를 넘겨서 조회요청(존재하는지 안하는지) => 응답데이터 돌려받기
     		// 1) 사용불가능일 경우 => alert로 메세지 출력, 다시 입력할 수 있도록 유도
-    		// 2) 사용가능일 경우 => 진짜 사용할건지 의사를 물어볼 거임
+    		// 2) 사용가능일 경우 => 진짜 사용할건지 의사를 물어볼 거임(confirm 메소드)
     		// 3) 				  > 사용하겠다는 경우 => 더이상 아이디 수정 못하게끔, 회원가입버튼 활성화
     		// 					  > 사용안하겠다는 경우 => 다시 입력할 수 있도록 유도
     		
@@ -111,7 +111,18 @@
     			url:"idCheck.me",
     			data:{checkId:$idInput.val()},
     			success:function(result){
-    				console.log(result);
+    				//console.log(result);
+    				if(result == 'NNNNN'){ // 사용 불가능
+    					alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+    					$idInput.focus();
+    				} else { // 사용가능일 경우
+    					if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+    						$("#enroll-form : submit").removeAttr("disabled") // enroll-form에서 타입이 submit인걸 찾아서 가지고 있는 disabled 속성 제거
+    						$idInput.attr("readonly", true);
+    					} else {
+							$idInput.focus();
+    					}
+    				}
     			},
     			error:function(){
     				console.log("아이디 중복체크용 ajax 통신 실패!")

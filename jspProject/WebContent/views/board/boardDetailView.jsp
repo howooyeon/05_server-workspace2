@@ -20,7 +20,7 @@
         background-color: black;
         color: white;
         width: 1000px;
-        height: 550px;
+        height: auto;
         margin: auto;
         margin-top: 50px;
     }
@@ -75,6 +75,90 @@
             <a href="#" class="btn btn-sm btn-danger">삭제하기</a>
             <% } %>
         </div>
+
+        <br>
+
+        <div id="reply-area">
+            <table border="1" align="center">
+                <thead>
+                    <tr>
+                        <th>댓글작성</th>
+                        <!-- 로그인한 사용자만 보이는 화면 -->
+                        <% if(loginMember != null) {%>
+	                        <td>
+	                            <textarea id="replyContent" cols="50" rows="3" style="resize: none;"></textarea>
+	                        </td>
+	                        <td><button onclick="insertReply();">댓글등록</button></td>
+                        <% } else { %>
+                        <!-- 로그인 안 한 사용자가 보는 화면 -->
+	                        <td>
+	                            <textarea rows="3" cols="50" style="resize:none;" readonly>로그인 후 이용가능한 서비스입니다.</textarea>
+	                        </td>
+	                        <td><button disabled>댓글등록</button></td>
+                        <% } %>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    
+                </tbody>
+                    
+            </table>
+            <script>
+            	$(function(){
+            		selectReplyList();
+
+            		setInterval(selectReplyList, 1000);
+            	});
+            	
+            	// ajax로 댓글 작성용
+            	function insertReply(){
+            		$.ajax({
+            			url:"rinsert.bo",
+            			data:{
+            				content:$("#replyContent").val(),
+            				bno: <%=b.getBoardNo()%>
+            			},
+            			type:"post",
+            			success:function(result){
+            				
+            				if(result > 0){ // 댓글 작성 성공! => 갱신된 댓글 리스트 조회
+								selectReplyList();
+            					$("#replyContent").val("");
+            				}
+            				
+            			}, error:function(){
+            				console.log("댓글 작성용 ajax 통신 실패")
+            			}
+            		})
+            	}
+            	
+            	// ajax로 해당 게시글에 딸린 댓글 목록 조회용
+            	function selectReplyList(){
+            		$.ajax({
+            			url:"rlist.bo",
+            			data:{bno:<%=b.getBoardNo()%>},
+            			success:function(list){
+            				console.log(list);
+            				
+            				let result = "";
+            				for(let i = 0; i<list.length; i++){
+            					result += "<tr>"
+	            							+ "<td>" + list[i].replyWriter + "</td>"
+	            							+ "<td>" + list[i].replyContent + "</td>"
+	            							+ "<td>" + list[i].createDate + "</td>"
+            						   + "</tr>"
+            				}
+            				$("#reply-area tbody").html(result);
+            			},
+            			error:function(){
+            				console.log("댓글 조회용 ajax 통신 실패!");
+            			}
+            		})
+            	}
+            </script>
+        </div>
+
     </div>
     
 
