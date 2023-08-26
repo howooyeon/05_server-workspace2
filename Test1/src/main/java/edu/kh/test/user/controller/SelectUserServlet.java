@@ -38,6 +38,15 @@ public class SelectUserServlet extends HttpServlet {
 		User user = UserService().SelectUser("userNo");
 		
 		// 3) 응답화면 결정
+		if(user == null) {
+			request.setAttribute("errorMsg", "조회된 결과가 없습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/searchFail.jsp");
+			view.forward(request, response);
+		} else {
+			request.setAttribute("user", user);
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/searchSuccess.jsp");
+			view.forward(request, response);
+		}
 		
 	}
 
