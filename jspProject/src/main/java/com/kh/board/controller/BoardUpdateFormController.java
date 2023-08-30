@@ -1,7 +1,6 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
