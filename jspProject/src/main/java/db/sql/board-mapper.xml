@@ -73,10 +73,10 @@ INSERT
     )
     VALUES
     (
-     SEQ_FNO.NEXTVAL
-    ,SEQ_BNO.CURRVAL
+      SEQ_FNO.NEXTVAL
+    , SEQ_BNO.CURRVAL
     , ?
-    , ?
+    , ?	
     , ?
     )
 </entry>
