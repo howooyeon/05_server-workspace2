@@ -40,7 +40,7 @@ public class NoticeDeleteFormController extends HttpServlet {
 		if(result > 0) { //요청 성공시 => 공지사항 목록페이지 alert(공지사항이 성공적으로 삭제됐습니다.)
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "공지사항이 성공적으로 삭제됐습니다.");
-			response.sendRedirect(request.getContextPath()+"/list.no");
+			response.sendRedirect(request.getContextPath() + "/list.no");
 			
 		}else { //요청 실패시 => 애러문구 보여지는 에러페이지 
 			request.setAttribute("errorMsg", "공지사항 삭제에 실패했습니다.");
