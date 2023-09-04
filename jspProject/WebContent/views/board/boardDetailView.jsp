@@ -116,7 +116,7 @@
             			url:"rinsert.bo",
             			data:{
             				content:$("#replyContent").val(),
-            				bnso: <%=b.getBoardNo()%>
+            				bno: <%=b.getBoardNo()%>
             			},
             			type:"post",
             			success:function(result){

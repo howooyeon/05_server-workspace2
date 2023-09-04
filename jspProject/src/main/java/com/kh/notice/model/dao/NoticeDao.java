@@ -154,7 +154,6 @@ public class NoticeDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			// 왜 conn은 반납을 안 해주지?
 		}
 		return result;
 	}
