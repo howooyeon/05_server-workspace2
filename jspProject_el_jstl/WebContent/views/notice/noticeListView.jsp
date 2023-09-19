@@ -2,9 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,20 +30,19 @@
 </style>
 </head>
 <body>
-<%@ include file= "../common/menubar.jsp" %>
+<jsp:include page="../common/menubar.jsp"/>
 <div class="outer">
     <br>
     
      <!-- 현재 로그인한 사용자가 관리자 일 경우 보여질 div -->
-     <% if(loginMember != null && loginMember.getUserId().equals("admin")) {%>
+     <c:if test="${ not empty loginMember and loginMember.userId eq 'admin'}">
         <div align="right" style="width: 850px;">
-            <!-- <button class="btb btn-sm btn-secondary">글작성</button> -->
-            <a href="<%= contextPath %>/enrollForm.no" class="btb btn-sm btn-secondary">글작성</a>
+            <a href="enrollForm.no" class="btb btn-sm btn-secondary">글작성</a>
             <br><br>
         </div>
-    <% } %>
-    <h2 align="center">공지사항</h2>
-    <br>
+    </c:if>
+    
+    <h2 align="center">공지사항</h2><br>
     
     <table class="list-area" align="center">
         <thead>
@@ -57,23 +55,24 @@
             </tr>
         </thead>
         <tbody>
-            <!-- case1. 공지글이 없을 경우  -->
-            <%if (list.isEmpty()) {%>
-            <tr>
-                <td colspan="5">존재하는 공지사항이 없습니다.</td>
-            </tr>
-            <% } else { %>
-            <!-- case2. 공지글이 있을 경우 -->
-            	<% for(Notice n : list) {%>
-		            <tr>
-		                <td><%= n.getNoticeNo() %></td>
-		                <td><%= n.getNoticeTitle() %></td>
-		                <td><%= n.getNoticeWriter() %></td>
-		                <td><%= n.getCount() %></td>
-		                <td><%= n.getCreateDate() %></td>
-		            </tr>
-	            <% } %>
-            <% } %>
+            <c:choose>
+            	<c:when test="${ empty list }">
+			            <tr>
+			                <td colspan="5">존재하는 공지사항이 없습니다.</td>
+			            </tr>
+		        </c:when>
+            	<c:otherwise>
+            		<c:forEach var="n" items="${ list }">
+		            	<tr>
+			                <td>${ n.noticeNo }</td>
+			                <td>${ n.noticeTitle }</td>
+			                <td>${ n.noticeWriter }</td>
+			                <td>${ n.count }</td>
+			                <td>${ n.createDate }</td>
+		            	</tr>
+	            	</c:forEach>
+	            </c:otherwise>
+            </c:choose>
         </tbody>
     </table>
 </div>
@@ -82,12 +81,8 @@
 	$(function(){
 		$(".list-area>tbody>tr").click(function(){
 				const num = $(this).children().eq(0).text()
-				// console.log(num)
-				// 요청할 url? 키 = 벨류 & 키=벨류
-				// 요청시 전달값 (키 = 벨류) => 쿼리스트링!
 				
-				// /jsp/detail.no?num=클릭한글번호
-				location.href =  '<%= contextPath %>/detail.no?num=' + num;
+				location.href =  'detail.no?num=' + num;
 			})
 		})
 </script>

@@ -1,10 +1,7 @@
 <%@page import="com.kh.notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	Notice n = (Notice)request.getAttribute("n");
-	// 글번호, 글제목, 내용, 작성자 아이디, 작성일
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +20,7 @@
 </style>
 </head>
 <body>
-<%@ include file = "../common/menubar.jsp" %>
+<jsp:include page="../common/menubar.jsp"/>
     <div class="outer" align="center">
         <br>
         <h2 align="center">공지사항 상세보기</h2>
@@ -31,31 +28,31 @@
         <table id="detail-area" border="1">
             <tr>
                 <th width="70">제목</th>
-                <td colspan="3" width="430"><%=n.getNoticeTitle() %></td>
+                <td colspan="3" width="430">${ n.noticeTitle }</td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><%= n.getNoticeWriter() %></td>
+                <td>${ n.noticeWriter }</td>
                 <th>작성일</th>
-                <td><%=n.getCreateDate() %></td>
+                <td>${ n.createDate }</td>
             </tr>
             <tr>
                 <th>내용</th>
                 <td colspan="3">
-                    <p style="height: 150px;"><%=n.getNoticeContent() %></p>
+                    <p style="height: 150px;">${ n.noticeContent }</p>
                 </td>
             </tr>
         </table>
         <br><br>
 
         <div>
-            <a href="<%=contextPath %>/list.no" class="btn btn-sm btn-secondary">목록가기</a>
+            <a href="list.no" class="btn btn-sm btn-secondary">목록가기</a>
             <!-- 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우 -->
-            <% if(loginMember != null && n.getNoticeWriter().equals(loginMember.getUserId())) {%>
-            <a href="<%= contextPath %>/updateForm.no?num=<%=n.getNoticeNo() %>" class="btn btn-sm btn-warning">수정하기</a>
-            <a href="<%= contextPath %>/deleteForm.no?num=<%=n.getNoticeNo() %>" class="btn btn-sm btn-danger">삭제하기</a>
-            <% } %>
-            
+            <c:if test="${not empty loginMember and n.noticeWriter eq loginMember.userId}">
+            <a href="updateForm.no?num=${ n.noticeNo }" class="btn btn-sm btn-warning">수정하기</a>
+            <a href="deleteForm.no?num=${ n.noticeNo }" class="btn btn-sm btn-danger">삭제하기</a>
+            </c:if>
+           
             <!-- 
             	삭제 구현해보기
             	url-mapping 맘대로

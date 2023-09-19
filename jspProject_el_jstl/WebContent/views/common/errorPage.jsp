@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="menubar.jsp"/> 
 
-<%@ include file = "menubar.jsp" %>
+<br><br>
 
-<br> <br>
-
-<h1 align="center" style="color:red;"><%= request.getAttribute("errorMsg") %></h1>
+<h1 align="center" style="color:red;">${ errorMsg }</h1>
 
 </body>
 </html>

@@ -50,7 +50,6 @@ public class NoticeDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			
 		}
 		return list;
 	}

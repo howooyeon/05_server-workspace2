@@ -18,13 +18,13 @@
 </style>
 </head>
 <body>
-<%@ include file="../common/menubar.jsp" %>
+<jsp:include page="../common/menubar.jsp"/>
     
     <div class="outer">
         
         <br>
         <h2 align="center">마이페이지</h2>
-        <form action="<%= contextPath %>/insert.me" id="enroll-form" method="post"> <!-- 회원가입은 민감 정보. 그래서 post-->
+        <form action="insert.me" id="enroll-form" method="post"> <!-- 회원가입은 민감 정보. 그래서 post-->
             <table>
                 <tr> 
                     <td>* 아이디</td>
@@ -129,7 +129,6 @@
     			}
     		})
     	}
-    
     </script>
     
 
