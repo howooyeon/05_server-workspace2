@@ -48,7 +48,7 @@
         <br>
 
         <form id="update-form" action="<%=contextPath %>/update.bo" method="post" enctype="multipart/form-data">
-        <input type="hidden" name = "bno" value ="<%=b.getBoardNo()%>"/>
+        <input type="hidden" name="bno" value ="<%=b.getBoardNo()%>"/>
 			<!-- 카테고리번호, 제목, 내용, 첨부파일 한개, 게시글 번호-->
             	<table align="center">
                 	<tr>
