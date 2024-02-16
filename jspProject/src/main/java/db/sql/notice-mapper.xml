@@ -5,15 +5,17 @@
   SELECT ROWNUM RNUM, B.*
     FROM (
         SELECT
-            Q.Q_NO,
-            Q.Q_TITLE,
-            Q.Q_CONTENT,
-            TO_CHAR(Q.Q_DATE, 'YYYY/MM/DD') AS "QNA_DATE"
-        FROM QNA Q
-        JOIN MEMBER M ON (Q.Q_WRITER = M.USER_NO)
-        WHERE Q.STATUS = 'Y'
+            N.NOTICE_NO,
+            N.NOTICE_TITLE,
+            N.NOTICE_CONTENT,
+          	N.CREATE_DATE,
+            M.USER_ID,
+            N.COUNT
+        FROM NOTICE N
+        JOIN MEMBER M ON (N.NOTICE_WRITER = M.USER_NO)
+        WHERE N.STATUS = 'Y'
     ) B
-)
+
 </entry>
 
 <entry key ="insertNotice">
